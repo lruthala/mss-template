@@ -1,0 +1,43 @@
+/*
+Error: Invalid US-ASCII character "\xE2"
+        on line 94 of /home/ubuntu/workspace/experiment/GSA-index.php
+
+89:              </section>
+90:          	
+91:          	<section>
+92:          	    <div class="container">
+93:          	    <div class="row">
+94:          	        <h3 class="heavy"><font color="#0d416b">Miracle’s GSA Offerings </font></h3>
+95:          	        
+96:          	        <p class="methodText">Miracle Software Systems, Inc. is a Global Systems Integrator headquartered out of Novi, MI USA. With over 2000 employees located across the globe in 4 continents, Miracle
+97: has been helping its customers transform their enterprise to become the ultimate “Connected Digital Enterprise”. For over 2 decades Miracle has been the industry’s Thought
+98: Leader and Innovator, providing our customers with Innovative Solutions at affordable costs</p>
+99:          	    <p class="methodText">For more information please visit <a class="linkText" href="#"><strong style="text-decoration:none">www.miraclesoft.com </strong></a></p>
+
+Backtrace:
+/home/ubuntu/workspace/experiment/GSA-index.php:94
+/nix/store/zmisxnl63ica4zaviifixamr3xg27kzp-ruby-2.3.1-p0/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/util.rb:1300:in `rescue in block in find_encoding_error'
+/nix/store/zmisxnl63ica4zaviifixamr3xg27kzp-ruby-2.3.1-p0/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/util.rb:1297:in `block in find_encoding_error'
+/nix/store/zmisxnl63ica4zaviifixamr3xg27kzp-ruby-2.3.1-p0/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/util.rb:1296:in `each'
+/nix/store/zmisxnl63ica4zaviifixamr3xg27kzp-ruby-2.3.1-p0/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/util.rb:1296:in `each_with_index'
+/nix/store/zmisxnl63ica4zaviifixamr3xg27kzp-ruby-2.3.1-p0/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/util.rb:1296:in `find_encoding_error'
+/nix/store/zmisxnl63ica4zaviifixamr3xg27kzp-ruby-2.3.1-p0/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/util.rb:905:in `check_sass_encoding'
+/nix/store/zmisxnl63ica4zaviifixamr3xg27kzp-ruby-2.3.1-p0/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/engine.rb:436:in `check_encoding!'
+/nix/store/zmisxnl63ica4zaviifixamr3xg27kzp-ruby-2.3.1-p0/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/engine.rb:392:in `_to_tree'
+/nix/store/zmisxnl63ica4zaviifixamr3xg27kzp-ruby-2.3.1-p0/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/engine.rb:381:in `_render_with_sourcemap'
+/nix/store/zmisxnl63ica4zaviifixamr3xg27kzp-ruby-2.3.1-p0/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/engine.rb:298:in `render_with_sourcemap'
+/nix/store/zmisxnl63ica4zaviifixamr3xg27kzp-ruby-2.3.1-p0/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/plugin/compiler.rb:492:in `update_stylesheet'
+/nix/store/zmisxnl63ica4zaviifixamr3xg27kzp-ruby-2.3.1-p0/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/nix/store/zmisxnl63ica4zaviifixamr3xg27kzp-ruby-2.3.1-p0/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/plugin/compiler.rb:209:in `each'
+/nix/store/zmisxnl63ica4zaviifixamr3xg27kzp-ruby-2.3.1-p0/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/nix/store/zmisxnl63ica4zaviifixamr3xg27kzp-ruby-2.3.1-p0/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/plugin.rb:82:in `update_stylesheets'
+/nix/store/zmisxnl63ica4zaviifixamr3xg27kzp-ruby-2.3.1-p0/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/exec/sass_scss.rb:340:in `watch_or_update'
+/nix/store/zmisxnl63ica4zaviifixamr3xg27kzp-ruby-2.3.1-p0/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/exec/sass_scss.rb:51:in `process_result'
+/nix/store/zmisxnl63ica4zaviifixamr3xg27kzp-ruby-2.3.1-p0/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/exec/base.rb:52:in `parse'
+/nix/store/zmisxnl63ica4zaviifixamr3xg27kzp-ruby-2.3.1-p0/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/exec/base.rb:19:in `parse!'
+/mnt/shared/sbin/scss:13:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Invalid US-ASCII character \"\xE2\"\A         on line 94 of /home/ubuntu/workspace/experiment/GSA-index.php\A \A 89:              </section>\A 90:          	\A 91:          	<section>\A 92:          	    <div class=\"container\">\A 93:          	    <div class=\"row\">\A 94:          	        <h3 class=\"heavy\"><font color=\"#0d416b\">Miracle’s GSA Offerings </font></h3>\A 95:          	        \A 96:          	        <p class=\"methodText\">Miracle Software Systems, Inc. is a Global Systems Integrator headquartered out of Novi, MI USA. With over 2000 employees located across the globe in 4 continents, Miracle\A 97: has been helping its customers transform their enterprise to become the ultimate “Connected Digital Enterprise”. For over 2 decades Miracle has been the industry’s Thought\A 98: Leader and Innovator, providing our customers with Innovative Solutions at affordable costs</p>\A 99:          	    <p class=\"methodText\">For more information please visit <a class=\"linkText\" href=\"#\"><strong style=\"text-decoration:none\">www.miraclesoft.com </strong></a></p>"; }

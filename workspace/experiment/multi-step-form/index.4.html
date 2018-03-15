@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Multi Step Form with Rhinoslider 1.05</title>
+        <link type="text/css" rel="stylesheet" href="css/rhinoslider-1.05.css" />
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/rhinoslider-1.05.min.js"></script>
+        <script type="text/javascript" src="js/mousewheel.js"></script>
+        <script type="text/javascript" src="js/easing.js"></script>
+        <script type="text/javascript">
+
+
+
+            $(document).ready(function() {
+                $('#slider').rhinoslider({
+                    controlsPlayPause: false,
+                    showControls: 'always',
+                    showBullets: 'always',
+                    controlsMousewheel: false,
+                    prevText: 'Back',
+                    nextText:'Proceed',
+		    slidePrevDirection: 'toRight',
+		slideNextDirection: 'toLeft'
+                });
+
+
+                $(".rhino-prev").hide();
+                $('.rhino-next').after('<a class="form-submit" href="javascript:void(0);" >Proceed</a>');
+                $(".rhino-next").hide();
+
+
+
+
+                var info = ["PERSONAL DETAILS","OTHER DETAILS","SKILLS SET","DOCUMENTS UPLOAD","CONTACT DETAILS"];
+                var images = ["Personal-01.svg","Account-01.svg","experience-01.svg","file-upload-01.svg","other-skills-01.svg","contact-01.svg"];
+                $('.rhino-bullet').each(function(index){
+                    $(this).html('<p style="margin: 0pt; font-size: 13px; font-weight: bold;"><img height="50px" src="./img/'+
+                        images[index]+'"></p><p class="bullet-desc">'+info[index]+'</p></a>');
+                });
+
+
+
+            });
+
+            $('.form-submit').live("click",function(){
+
+                $('.form-error').html("");
+
+                var current_tab = $('#slider').find('.rhino-active').attr("id");
+
+                switch(current_tab){
+                    case 'rhino-item0':
+                        step1_validation();
+                        break;
+                    case 'rhino-item1':
+                        step2_validation();
+                        break;
+                    case 'rhino-item2':
+                        step3_validation();
+                        break;
+                    case 'rhino-item3':
+                        step3_validation();
+                        break;
+                         case 'rhino-item4':
+                        step3_validation();
+                        break;
+                         case 'rhino-item5':
+                        step3_validation();
+                        break;
+                }
+            });
+
+            var step1_validation = function(){
+
+                var err = 0;
+
+                if($('#fname').val() == ''){
+                    $('#fname').parent().parent().find('.form-error').html("First Name is Required");
+                    err++;
+                }
+                if($('#lname').val() == ''){
+                    $('#lname').parent().parent().find('.form-error').html("Last Name is Required");
+                    err++;
+                }
+                if($('#gender').val() == '0'){
+                    $('#gender').parent().parent().find('.form-error').html("Please Select Gender");
+                    err++;
+                }
+                if(err == 0){
+                    $(".rhino-active-bullet").removeClass("step-error").addClass("step-success");
+                    $(".rhino-next").show();
+                    $('.form-submit').hide();
+                    $('.rhino-next').trigger('click');
+                }else{
+                    $(".rhino-active-bullet").removeClass("step-success").addClass("step-error");
+                }
+
+
+            };
+
+            var step2_validation = function(){
+                var err = 0;
+
+                if($('#username').val() == ''){
+                    $('#username').parent().parent().find('.form-error').html("Username is Required");
+                    err++;
+                }
+                if($('#pass').val() == ''){
+                    $('#pass').parent().parent().find('.form-error').html("Password is Required");
+                    err++;
+                }
+                if($('#cpass').val() == ''){
+                    $('#cpass').parent().parent().find('.form-error').html("confirm Password is Required");
+                    err++;
+                }
+                
+                if(err == 0){
+                    $(".rhino-active-bullet").removeClass("step-error").addClass("step-success");
+                    $(".rhino-next").show();
+                    $('.form-submit').hide();
+                    $('.rhino-next').trigger('click');
+                }else{
+                    $(".rhino-active-bullet").removeClass("step-success").addClass("step-error");
+                }
+
+            };
+
+            var step3_validation = function(){
+                var err = 0;
+
+                if($('#email').val() == ''){
+                    $('#email').parent().parent().find('.form-error').html("Email is Required");
+                    err++;
+                }
+                if(err == 0){
+                    $(".rhino-active-bullet").removeClass("step-error").addClass("step-success");
+                    $(".rhino-next").show();
+                    $('.form-submit').hide();
+                    $('.rhino-next').trigger('click');
+                }else{
+                    $(".rhino-active-bullet").removeClass("step-success").addClass("step-error");
+                }
+
+            };
+
+
+ $(document).ready(function(){
+    $('#gender').on('change', function() {
+      if ( this.value == '1')
+      {
+         $("#personal-info").hide();
+         $("#info").show();
+      }
+      else if ( this.value == '2')
+
+{
+$("#info").hide();
+$("#personal-info").show();
+}
+
+      else
+      {
+        $("#personal-info").hide();
+      }
+    });
+});
+        </script>
+       
+        <style type="text/css">
+            body { background-color:#fff;overflow-x:hidden;}
+            #wrapper{
+                border: 1px solid #DCDADA;
+                border-radius: 5px 5px 5px 5px;
+                box-shadow: 2px 2px 2px #E1E1E1;
+                background: #fff;
+                width:1202px;
+                height:630px;
+                background:#f4f4f4;
+
+
+            }
+            #wrapper h3{
+              font-family:Lato,sans-serif !important;
+                font-size:20px;
+                height:60px;
+                background-color:#0d416b;
+                margin:auto;
+                padding:16px 0 0 20px;
+                
+                filter: dropshadow(color=#000, offx=1, offy=1);
+                color:#fff;
+            }
+            #slider {
+
+                background: #fff;
+                /*IE bugfix*/
+                padding:0;
+                margin:0;
+                width:180%;
+                height:400px;	
+
+            }
+
+            #slider li { list-style:none; }
+
+            #page {
+                width:1214px;
+                margin:10px auto;
+            }
+
+            #slider{
+                color: #000;
+                background:#f4f4f4;
+              font-family:Lato,sans-serif !important;
+                font-size:19px;
+            }
+
+            .form-step{
+
+                padding:10% 3% !important;
+
+
+            }
+
+            .form-submit{
+                cursor: pointer;
+                display: block;
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                -moz-user-select: none;
+                background: none repeat scroll 0 0 #6F95DC;
+                border-radius: 5px 5px 5px 5px;
+                color: #FFFFFF;
+                display: block;
+                margin: 0 20px 20px;
+                padding: 10px;
+                text-align: center;
+                width: 125px;
+                z-index: 10;
+                font-weight: bold;
+                text-decoration: none;
+                background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#94b9e9), to(#4870d2));
+                background-image: -moz-linear-gradient(#94b9e9, #4870d2);
+                background-image: -webkit-linear-gradient(#94b9e9, #4870d2);
+                background-image: -o-linear-gradient(#94b9e9, #4870d2);
+                filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#94b9e9, endColorstr=#4870d2)";
+                -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#94b9e9, endColorstr=#4870d2)";
+                 font-family:Lato,sans-serif !important;
+
+            }
+
+            .errorDisplay{
+                border:2px solid red;
+            }
+
+            .form-left{
+                margin-bottom:6px;
+                color: #717171;
+                float: left;
+                font-size: 17px;
+                font-weight: bold;
+                padding: 5px;
+                width: 200px;
+            }
+            .form-right{
+                float: left;
+                width: 214px;
+            }
+            .row{
+                float: left;
+                margin: 5px 0;
+                width: 100%;
+            }
+            .form-step input[type='text']{
+                border: 1px solid #CFCFCF;
+                border-radius: 4px 4px 4px 4px;
+                height: 25px;
+                padding: 3px;
+                width: 200px;
+            }
+            select{
+                border-radius: 4px;
+                border: 1px solid #CFCFCF;
+                -webkit-border-radius: 4px;
+                -moz-border-radius: 4px;
+                background: #FFF;
+                padding: 2px;
+                height: 30px;
+                width:205px;
+               font-family:Lato,sans-serif !important;
+                font-size:14px;
+                background:#f4f4f4;
+            }
+
+            select option{
+               font-family:Lato,sans-serif !important;
+                font-size:12px;
+                background:#f4f4f4;
+                color:#717171;
+            }
+
+
+            .form-error{
+                color: red;
+                font-size: 12px;
+                padding: 8px;
+            }
+
+            .step-error{
+                background:#ef4048 !important;
+                color:#FFF !important;
+                -moz-box-shadow:1px 1px 4px #C6C4C4
+                    -webkit-box-shadow:1px 1px 4px #C6C4C4
+                    box-shadow:1px 1px 4px #C6C4C4
+            }
+            .step-success{
+                background:#72e487 !important;
+                color:#FFF !important;
+                -moz-box-shadow:1px 1px 1px 4px #C6C4C4
+                    -webkit-box-shadow:1px 1px 1px 4px #C6C4C4
+                    box-shadow:1px 1px 1px 4px #C6C4C4
+            }
+            .bullet-desc{
+                font-size: 14px;
+                font-weight: bold;
+            }
+            .new-select {
+  display: inline-block;
+}
+
+.first-step{
+    display:grid;
+    grid-template-columns:25% 25% 25% 25%;
+    }
+    
+    .second-step{
+  display:grid;
+    grid-template-columns:25% 25% 25% 25%;
+    }
+    
+    .general-step{
+        display:grid;
+    grid-template-columns:33% 33% 33%;
+    }
+    .hindi-step{
+         display:grid;
+    grid-template-columns:10% 10% 10% 70%;
+        }
+        .english-step{
+         display:grid;
+    grid-template-columns:10% 10% 10% 70%;
+        }
+        .telugu-step{
+         display:grid;
+    grid-template-columns:10% 10% 10% 70%;
+        }
+     .other-step{
+         display:grid;
+    grid-template-columns:10% 10% 10% 70%;
+        }
+     
+     .third-stp{
+       display:grid;
+       grid-template-columns:25% 20% 20% 40%;
+         
+         }
+          .fourth-stp{
+       display:grid;
+       grid-template-columns:40% 40% 20% ;
+         
+         }
+          .fifth-stp{
+        display:grid;
+    grid-template-columns:33% 33% 33%;
+    }
+    .foot{
+    height: 80px;
+    background-color: #232527;
+    width: 102%;
+    float: left;
+    margin-left: -8px;color: #bdc3c7;}
+    .foot a{ color:#fff;text-decoration:none;}
+    .foot a:hover{text-decoratopn:underline;color:#ef4048;}
+        </style>
+    </head>
+    <body>
+        <div id="page">
+            <div id="wrapper">
+                <h3 style="padding-top:30px;">Submit Your Onboarding Details</h3>
+                <form action="">
+                    <div id="slider" style="height:720px!important;">
+                        <div class="form-step">
+                            <h2>General Information</h2>
+                           
+                           <div class="general-step">
+                            <div class="row">
+                                <div class="form-left">PAN/Acknowledge No*</div>
+                                <div class="form-right"><input type="text" id="fname" name="fname" class="form-input" /></div>
+                                <div class="form-error"></div>
+                            </div>
+                            <div class="row">
+                                <div class="form-left">Aadhar No</div>
+                                <div class="form-right"><input type="text" id="lname" name="lname" class="form-input" /></div>
+                                <div class="form-error"></div>
+                            </div>
+                            <div class="row">
+                                <div class="form-left">Passport No</div>
+                                <div class="form-right"><input type="text" id="lname" name="lname" class="form-input" /></div>
+                                <div class="form-error"></div>
+                            </div>
+                            </div>
+                        <h2>Family Information</h2>
+                        <div class="row">
+                        <div class="first-step">
+                        <div class="row">
+                                <div class="form-left">Marital Status *</div>
+                                <div class="form-right">
+                                    <select id="gender" name="gender">
+                                        <option value="0">Select Category</option>
+                                        <option value="1">Single</option>
+                                        <option value="2" class="formin1">Married</option>
+                                    </select>
+                                </div>
+                                 <div class="form-error"></div>
+                            </div>
+                        
+ <div style='display:none;margin-top:6px;' id='personal-info' >
+                                <div class="form-left">Spouse Name</div>
+                                <div class="form-right"><input type="text" id="sname" name="sname" class="form-input" /></div>
+                                <div class="form-error"></div>
+                            </div>
+
+
+
+
+
+                          <div class="row" id="info">
+                                <div class="form-left">Parent Name</div>
+                                <div class="form-right"><input type="text" id="lname" name="lname" class="form-input" /></div>
+                                <div class="form-error"></div>
+                            </div>
+                              <div class="row" >
+                                <div class="form-left">DOB</div>
+                                <div class="form-right"><input type="text" id="lname" name="lname" class="form-input" /></div>
+                                <div class="form-error"></div>
+                            </div>
+                              <div class="row" >
+                                <div class="form-left">Age</div>
+                                <div class="form-right"><input type="text" id="lname" name="lname" class="form-input" /></div>
+                                <div class="form-error"></div>
+                            </div>
+                            </div>
+                            <div class="second-step">
+                              <div class="row" >
+                                <div class="form-left">Gender *</div>
+                                <div class="form-right">
+                                    <select id="gender test" name="gender form_select">
+                                        <option value="0">Select</option>
+                                        <option value="M">Male</option>
+                                        <option value="F">Female</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-error"></div>
+                            </div>
+                              <div class="row" >
+                                <div class="form-left">Relationship</div>
+                                <div class="form-right"><input type="text" id="lname" name="lname" class="form-input" /></div>
+                                <div class="form-error"></div>
+                            </div>
+                              <div class="row" >
+                                <div class="form-left">Occupation</div>
+                                <div class="form-right"><input type="text" id="lname" name="lname" class="form-input" /></div>
+                                <div class="form-error"></div>
+                            </div>
+                            
+                            </div>
+                            <div class="sixth-step" id="hidden_div" style="display: none;">
+                             <div class="row">
+                                <div class="form-left">Gender *</div>
+                                <div class="form-right">
+                                    <select id="gender" name="gender">
+                                        <option value="0">Select</option>
+                                        <option value="M">Male</option>
+                                        <option value="F">Female</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-error"></div>
+                            </div>
+                              <div class="row">
+                                <div class="form-left">Relationship</div>
+                                <div class="form-right"><input type="text" id="lname" name="lname" class="form-input" /></div>
+                                <div class="form-error"></div>
+                            </div>
+                              <div class="row">
+                                <div class="form-left">Occupation</div>
+                                <div class="form-right"><input type="text" id="lname" name="lname" class="form-input" /></div>
+                                <div class="form-error"></div>
+                            </div>
+                            </div>
+                          <h2>Contact details</h2>
+                             <div class="third-stp">
+                              <div class="row">
+                              <div class="form-left">Primary Contact</div>
+                                <div class="form-right"><input type="text" id="lname" name="lname" class="form-input" /></div>
+                                <div class="form-error"></div>
+                              </div>
+                             <div class="row">
+                                <div class="form-left">Secondary Contact</div>
+                                <div class="form-right"><input type="text" id="lname" name="lname" class="form-input" /></div>
+                                <div class="form-error"></div>
+                           
+                            
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="form-step" >
+                         <h2>Laptop Specifications</h2>
+                        <div class="fourth-stp">
+                            <div class="row">
+                           
+                                <div class="form-left">Laptop Photo</div>
+                                <div class="form-right"><input type="file" name="pic" ></div>
+                                <div class="form-error"></div>
+                            </div>
+                              <div class="row">
+                                <div class="form-left">Windows Os *</div>
+                                <div class="form-right">
+                                    <select id="gender" name="gender">
+                                        <option value="0">Select</option>
+                                        <option value="M">Genuine</option>
+                                        <option value="F">Non-genuine</option>
+                                    </select>
+                                </div>
+                                <div class="form-error"></div>
+                            </div>
+                           </div>
+                            <h2>Bank Details</h2>
+                             <div class="row">
+                                <div class="form-left">Bank Details</div>
+                                <div class="form-right">
+                                    <select id="gender" name="gender">
+                                        <option value="0">Select Category</option>
+                                        <option value="M">Yes</option>
+                                        <option value="F">No</option>
+                                    </select>
+                                </div>
+                                <div class="form-error"></div>
+                            </div>
+                                <h2>Medical Information</h2>
+                                <div class="fifth-stp">
+                             <div class="row">
+                                <div class="form-left">Medical Certificate</div>
+                                <div class="form-right"><input type="file" id="mobile" name="mobile" class="form-input" /></div>
+                                <div class="form-error"></div>
+                            </div>
+                             <div class="row">
+                                <div class="form-left">Blood Group</div>
+                                <div class="form-right"><input type="text" id="mobile" name="mobile" class="form-input" /></div>
+                                <div class="form-error"></div>
+                            </div>
+                             <div class="row">
+                                <div class="form-left">Health Problems</div>
+                                <div class="form-right">
+                                    <select id="gender" name="gender">
+                                        <option value="0">Select</option>
+                                        <option value="M">Yes</option>
+                                        <option value="F">No</option>
+                                    </select>
+                                </div>
+                                <div class="form-error"></div>
+                            </div>
+                            </div>
+                        </div>
+                      
+                         <div class="form-step">
+                        
+                            <div class="row">
+                            <h2>Language proficiency</h2>
+                             <div class="english-step">
+                             <div >English:
+                              
+                                </div>
+<div>
+        <input id="item1" name="item1" type="checkbox">
+        <label id="item1" for="item1">Speak</label>
+    </div>    
+
+    <div>    
+        <input id="item2" name="item2" type="checkbox">
+        <label id="item2" for="item2">Read</label>
+    </div>    
+
+    <div>    
+        <input id="item3" name="item3" type="checkbox">
+        <label id="item3" for="item3">write</label>
+    </div>    
+      
+   
+    </div>
+     <div class="hindi-step">
+                             <div >Hindi :
+                              
+                                </div>
+      
+
+<div>
+        <input id="item1" name="item1" type="checkbox">
+        <label id="item1" for="item1">Speak</label>
+    </div>    
+
+    <div>    
+        <input id="item2" name="item2" type="checkbox">
+        <label id="item2" for="item2">Read</label>
+    </div>    
+
+    <div>    
+        <input id="item3" name="item3" type="checkbox">
+        <label id="item3" for="item3">write</label>
+    </div>    
+      
+   
+    </div>
+    
+     <div class="telugu-step">
+                             <div >Telugu :
+                              
+                                </div>
+      
+
+<div>
+        <input id="item1" name="item1" type="checkbox">
+        <label id="item1" for="item1">Speak</label>
+    </div>    
+
+    <div>    
+        <input id="item2" name="item2" type="checkbox">
+        <label id="item2" for="item2">Read</label>
+    </div>    
+
+    <div>    
+        <input id="item3" name="item3" type="checkbox">
+        <label id="item3" for="item3">write</label>
+    </div>    
+      
+   
+    </div>
+      <div class="other-step">
+                             <div >Other :
+                              
+                                </div>
+      
+
+<div>
+        <input id="item1" name="item1" type="checkbox">
+        <label id="item1" for="item1">Speak</label>
+    </div>    
+
+    <div>    
+        <input id="item2" name="item2" type="checkbox">
+        <label id="item2" for="item2">Read</label>
+    </div>    
+
+    <div>    
+        <input id="item3" name="item3" type="checkbox">
+        <label id="item3" for="item3">write</label>
+    </div>    
+      
+   
+    </div>
+     <div class="row">
+                            <h2>Other Details(Serious Interest and Hobbies)</h2>
+                                 <div class="" style="display: grid;grid-template-columns: 25% 25%;"> 
+                                <div class="form-left">Hobbies</div></div>
+                                <div class="form-right"><textarea rows="4" cols="50">
+                                </textarea>
+                                  <div class="form-error"></div></div>
+                            </div>
+     </div>
+     
+                            </div>
+                            
+                           
+                        <div class="form-step">
+                             <div class="row">
+                             <h2>Internal References</h2>
+                                <div class="form-left">Do you have any references in miracle</div>
+                                <div class="form-right">
+                                    <select id="gender" name="gender">
+                                        <option value="0">Select category</option>
+                                        <option value="M">Yes</option>
+                                        <option value="F">No</option>
+                                    </select>
+                                </div>
+                              
+                                  <div class="row">
+                             <h2>Work Experience in last two years(Last two companies)</h2>
+                                <div class="form-left">Previous Company</div>
+                                <div class="form-right"><input type="number" id="email" name="email" class="form-input" /></div>
+                                <div class="form-error"></div>
+                            </div>
+                                <div class="form-error"></div>
+                            </div>
+                            <div class="row">
+                                <div class="form-left">From Date</div>
+                                <div class="form-right"><input type="date" id="mobile" name="mobile" class="form-input" /></div>
+                                <div class="form-error"></div>
+                            </div>
+                             <div class="row">
+                                <div class="form-left">To Date</div>
+                                <div class="form-right"><input type="date" id="mobile" name="mobile" class="form-input" /></div>
+                                <div class="form-error"></div>
+                            </div>
+                             <div class="row">
+                                <div class="form-left">Last Designation</div>
+                                <div class="form-right"><input type="text" id="mobile" name="mobile" class="form-input" /></div>
+                                <div class="form-error"></div>
+                            </div>
+                             <div class="row">
+                                <div class="form-left">CTC</div>
+                                <div class="form-right"><input type="text" id="mobile" name="mobile" class="form-input" /></div>
+                                <div class="form-error"></div>
+                            </div>
+                             <div class="row">
+                                <div class="form-left">Reason For Leaving</div>
+                                <div class="form-right"><input type="text" id="mobile" name="mobile" class="form-input" /></div>
+                                <div class="form-error"></div>
+                            </div>
+                        </div>
+                        <div class="form-step">
+                            <div class="row">
+                                   <h2>Mandatory certificates to be upload</h2>
+                                <div class="form-left">Secondary Schools Certificate</div>
+                                <div class="form-right"><input type="file" id="email" name="email" class="form-input" /></div>
+                                <div class="form-error"></div>
+                            </div>
+                            <div class="row">
+                                <div class="form-left">Intermediate Certificate</div>
+                                <div class="form-right"><input type="file" id="mobile" name="mobile" class="form-input" /></div>
+                                <div class="form-error"></div>
+                            </div>
+                              <div class="row">
+                                <div class="form-left">B.Tech CMM</div>
+                                <div class="form-right"><input type="file" id="mobile" name="mobile" class="form-input" /></div>
+                                <div class="form-error"></div>
+                            </div>
+                              <div class="row">
+                                <div class="form-left">B.tech Pc</div>
+                                <div class="form-right"><input type="file" id="mobile" name="mobile" class="form-input" /></div>
+                                <div class="form-error"></div>
+                            </div>
+                             <div class="row">
+                                <div class="form-left">B.tech Marks Sheets</div>
+                                <div class="form-right"><input type="file" id="mobile" name="mobile" class="form-input" /></div>
+                                <div class="form-error"></div>
+                            </div>  
+                             <div class="row">
+                                <div class="form-left">Profile photo</div>
+                                <div class="form-right"><input type="file" id="mobile" name="mobile" class="form-input" /></div>
+                                <div class="form-error"></div>
+                            </div>
+                        </div>
+                        </div>
+                       
+                       
+                    </div>
+                </form>
+                </div>
+                 
+            </div>
+            <footer class="foot" >  
+                    <div class="pull-left"style="margin: 31px 100px;">
+                    © 2018 <a target="_blank" href="http://www.miraclesoft.com" title="Copyright" itemprop="url">Miracle Software Systems, Inc.</a>
+                    </div>
+                      <div class="pull-right"></div>
+                </footer>
+             
+    </body>
+   
+</html>

@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Multi Step Form</title>
+        <link type="text/css" rel="stylesheet" href="css/rhinoslider-1.05.css" />
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/rhinoslider-1.05.min.js"></script>
+        <script type="text/javascript" src="js/mousewheel.js"></script>
+        <script type="text/javascript" src="js/easing.js"></script>
+        <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+        <script type="text/javascript">
+
+
+
+            $(document).ready(function() {
+                $('#slider').rhinoslider({
+                    controlsPlayPause: false,
+                    showControls: 'always',
+                    showBullets: 'always',
+                    controlsMousewheel: false,
+                    prevText: 'Back',
+                    nextText:'Proceed',
+		    slidePrevDirection: 'toRight',
+		slideNextDirection: 'toLeft'
+                });
+
+
+                $(".rhino-prev").hide();
+                $('.rhino-next').after('<a class="form-submit" href="javascript:void(0);" >Proceed</a>');
+                $(".rhino-next").hide();
+
+
+
+
+                var info = ["PERSONAL DETAILS","OTHER DETAILS","SKILLS SET","DOCUMENTS UPLOAD","CONTACT DETAILS"];
+                var images = ["Personal-01.svg","Account-01.svg","experience-01.svg","file-upload-01.svg","other-skills-01.svg","contact-01.svg"];
+                $('.rhino-bullet').each(function(index){
+                    $(this).html('<p style="margin: 0pt; font-size: 13px; font-weight: bold;"><img height="50px" src="./img/'+
+                        images[index]+'"></p><p class="bullet-desc">'+info[index]+'</p></a>');
+                });
+
+
+
+            });
+
+            $('.form-submit').live("click",function(){
+
+                $('.form-error').html("");
+
+                var current_tab = $('#slider').find('.rhino-active').attr("id");
+
+                switch(current_tab){
+                    case 'rhino-item0':
+                        step1_validation();
+                        break;
+                    case 'rhino-item1':
+                        step2_validation();
+                        break;
+                    case 'rhino-item2':
+                        step3_validation();
+                        break;
+                    case 'rhino-item3':
+                        step3_validation();
+                        break;
+                         case 'rhino-item4':
+                        step3_validation();
+                        break;
+                         case 'rhino-item5':
+                        step3_validation();
+                        break;
+                }
+            });
+
+            var step1_validation = function(){
+
+                var err = 0;
+
+                if($('#fname').val() == ''){
+                    $('#fname').parent().parent().find('input').css("border-color", "#ef4048");
+              err++;
+                }
+                   
+                if($('#lname').val() == ''){
+                    $('#lname').parent().parent().find('input').css("border-color", "#ef4048");
+                    err++;
+                }
+                if($('#lname1').val() == ''){
+                    $('#lname1').parent().parent().find('input').css("border-color", "#ef4048");
+                    err++;
+                }
+                if($('#gender1').val() == '0'){
+                    $('#gender1').parent().parent().find('select').css("border-color", "#ef4048");
+                    err++;
+                }
+                 if($('#lname3').val() == ''){
+                    $('#lname3').parent().parent().find('input').css("border-color", "#ef4048");
+                    err++;
+                }
+                if(err == 0){
+                    $(".rhino-active-bullet").removeClass("step-error").addClass("step-success");
+                    $(".rhino-next").show();
+                    $('.form-submit').hide();
+                    $('.rhino-next').trigger('click');
+                }else{
+                    $(".rhino-active-bullet").removeClass("step-success").addClass("step-error");
+                }
+
+
+            };
+
+            var step2_validation = function(){
+                var err = 0;
+
+                if($('#username').val() == ''){
+                    $('#username').parent().parent().find('.form-error').html("Username is Required");
+                    err++;
+                }
+                if($('#pass').val() == ''){
+                    $('#pass').parent().parent().find('.form-error').html("Password is Required");
+                    err++;
+                }
+                if($('#cpass').val() == ''){
+                    $('#cpass').parent().parent().find('.form-error').html("confirm Password is Required");
+                    err++;
+                }
+                
+                if(err == 0){
+                    $(".rhino-active-bullet").removeClass("step-error").addClass("step-success");
+                    $(".rhino-next").show();
+                    $('.form-submit').hide();
+                    $('.rhino-next').trigger('click');
+                }else{
+                    $(".rhino-active-bullet").removeClass("step-success").addClass("step-error");
+                }
+
+            };
+
+            var step3_validation = function(){
+                var err = 0;
+
+                if($('#temp').val() == '0'){
+                    $('#temp').parent().parent().find('textarea').css("border-color", "#ef4048");
+                    err++;
+                }
+                if(err == 0){
+                    $(".rhino-active-bullet").removeClass("step-error").addClass("step-success");
+                    $(".rhino-next").show();
+                    $('.form-submit').hide();
+                    $('.rhino-next').trigger('click');
+                }else{
+                    $(".rhino-active-bullet").removeClass("step-success").addClass("step-error");
+                }
+
+            };
+       $(document).ready(function(){
+    $('#gender1').on('change', function() {
+      if ( this.value == '1')
+      {
+         $("#personal-info").hide();
+         $("#info").show();
+      }
+      else if ( this.value == '2')
+
+{
+$("#info").hide();
+$("#personal-info").show();
+}
+
+      else
+      {
+        $("#personal-info").hide();
+      }
+    });
+    
+     $('#bank-details').on('change', function() {
+      if ( this.value == '1')
+      {
+         $(".bank-details").show();
+      }
+      else if ( this.value == '2')
+
+{
+ $(".bank-details").hide();
+}
+    });
+    
+      $('#health-info').on('change', function() {
+      if ( this.value == '1')
+      {
+         $(".health-info").show();
+      }
+      else if ( this.value == '2')
+
+{
+ $(".health-info").hide();
+}
+    });
+     $('#reference').on('change', function() {
+      if ( this.value == '1')
+      {
+         $(".reference-step").show();
+      }
+      else if ( this.value == '2')
+
+{
+ $(".reference-step").hide();
+}
+    });
+});
+//adding fields dynamically
+      $(document).ready(function() {
+    var max_fields      = 5; //maximum input boxes allowed
+    var wrapper         = $(".input_fields_wrap"); //Fields wrapper
+    var add_button      = $(".add_field_button");
+    
+    var x = 1; //initlal text box count
+    $(add_button).click(function(e){ //on add input button click
+        e.preventDefault();
+        if(x < max_fields){ //max input box allowed
+            x++; //text box increment
+            $(wrapper).append('<div class="user-info"><div class="row"><div class="family-info-stp"><div class="row"><div class="form-left">Name</div><div class="form-right"><input type="text" id="fname" name="fname" class="form-input" /></div></div><div class="row"><div class="form-left">Gender</div><div class="form-right"><select id="gender-info" name="gender"><option value="0">Select Category</option><option value="1">Male</option><option value="2" >Female</option></select></div></div><div class="row"><div class="form-left">Relationship</div><div class="form-right"> <select id="relation-info" name="relation"><option value="0">Select Category</option><option value="1">Father</option><option value="2" >Mother</option><option value="3" >Sister</option><option value="4" >Brother</option></select></div></div></div></div><div class="row"><div class="family-info-stp"><div class="row"><div class="form-left">DOB</div><div class="form-right"><input type="date" id="fname" name="fname" class="form-input" style="padding: 5px 46px;" /></div></div><div class="row"><div class="form-left">Age </div><div class="form-right"><input type="text" id="fname" name="fname" class="form-input" /></div></div><div class="row"><div class="form-left">Occupation</div><div class="form-right"><input type="text" id="fname" name="fname" class="form-input" /></div>    <button type="button" class="add_field_button"><span class="fa fa-plus"></span></button> <button type="button" class="btn-remove remove_field" ><span class="fa fa-minus"></span></button> </div></div></div></div>'); //add input box
+        }
+    });
+     
+    $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+          e.preventDefault(); $(this).closest('.user-info').remove();
+    })
+});
+
+    
+    
+    
+        </script>
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style type="text/css">
+            body { background-color:#fff;margin:0;padding:0; }
+            #wrapper{
+                border: 1px solid #DCDADA;
+                border-radius: 5px 5px 5px 5px;
+                box-shadow: 2px 2px 2px #E1E1E1;
+                background: #fff;
+                width:1202px;
+                height:745px;
+                background:#f4f4f4;
+
+
+            }
+            #wrapper h3{
+              font-family:Lato,sans-serif !important;
+                font-size:20px;
+                height:60px;
+                background-color:#0d416b;
+                margin:auto;
+                padding:16px 0 0 20px;
+                
+                filter: dropshadow(color=#000, offx=1, offy=1);
+                color:#fff;
+            }
+            #slider {
+
+                background: #fff;
+                /*IE bugfix*/
+                padding:0;
+                margin:0;
+                width:180%;
+                height:400px;	
+
+            }
+
+            #slider li { list-style:none; }
+
+            #page {
+                width:1214px;
+                margin:10px auto;
+            }
+
+            #slider{
+                color: #000;
+                background:#f4f4f4;
+              font-family:Lato,sans-serif !important;
+                font-size:19px;
+            }
+
+            .form-step{
+
+                padding:10% 3% !important;
+
+
+            }
+
+            .form-submit{
+                cursor: pointer;
+                display: block;
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                -moz-user-select: none;
+                background: none repeat scroll 0 0 #00aae7!important;
+                border-radius: 5px 5px 5px 5px;
+                color: #FFFFFF;
+                display: block;
+                margin: 0 20px 20px;
+                padding: 10px;
+                text-align: center;
+                width: 125px;
+                z-index: 10;
+                font-weight: bold;
+                text-decoration: none;
+                background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#94b9e9), to(#4870d2));
+                background-image: -moz-linear-gradient(#94b9e9, #4870d2);
+                background-image: -webkit-linear-gradient(#94b9e9, #4870d2);
+                background-image: -o-linear-gradient(#94b9e9, #4870d2);
+                filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#94b9e9, endColorstr=#4870d2)";
+                -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#94b9e9, endColorstr=#4870d2)";
+                 font-family:Lato,sans-serif !important;
+
+            }
+
+            .errorDisplay{
+                border:2px solid red;
+            }
+
+            .form-left{
+                margin-bottom:6px;
+                color: #717171;
+                float: left;
+                font-size: 17px;
+                font-weight: bold;
+                padding: 5px;
+                width: 200px;
+            }
+            .form-right{
+                float: left;
+                width: 214px;
+            }
+            .row{
+                float: left;
+                margin: 5px 0;
+                width: 100%;
+            }
+            .form-step input[type='text']{
+                border: 1px solid #CFCFCF;
+                border-radius: 4px 4px 4px 4px;
+                height: 25px;
+                padding: 3px;
+                width: 200px;
+            }
+            select{
+                border-radius: 4px;
+                border: 1px solid #CFCFCF;
+                -webkit-border-radius: 4px;
+                -moz-border-radius: 4px;
+                background: #FFF;
+                padding: 2px;
+                height: 30px;
+                width:205px;
+               font-family:Lato,sans-serif !important;
+                font-size:14px;
+                background:#f4f4f4;
+            }
+
+            select option{
+               font-family:Lato,sans-serif !important;
+                font-size:12px;
+                background:#f4f4f4;
+                color:#717171;
+            }
+
+
+            .form-error{
+                color: red;
+                font-size: 12px;
+                padding: 8px;
+            }
+
+            .step-error{
+                background:#ef4048 !important;
+                color:#FFF !important;
+                -moz-box-shadow:1px 1px 4px #C6C4C4;
+                    -webkit-box-shadow:1px 1px 4px #C6C4C4;
+                    box-shadow:1px 1px 4px #C6C4C4;
+            }
+            .step-success{
+                background:#00aae7 !important;
+                color:#FFF !important;
+                -moz-box-shadow:1px 1px 1px 4px #C6C4C4;
+                    -webkit-box-shadow:1px 1px 1px 4px #C6C4C4;
+                    box-shadow:1px 1px 1px 4px #C6C4C4;
+            }
+            .bullet-desc{
+                font-size: 14px;
+                font-weight: bold;
+            }
+            .new-select {
+  display: inline-block;
+}
+
+.first-step{
+    display:grid;
+    grid-template-columns:25% 25% 25% 25%;
+    }
+    
+    .second-step{
+  display:grid;
+    grid-template-columns:25% 25% 25% 25%;
+    }
+    
+    .general-step{
+        display:grid;
+    grid-template-columns:25% 25% 33% 17%
+    }
+    .hindi-step{
+         display:grid;
+    grid-template-columns:10% 10% 10% 70%;
+        }
+        .english-step{
+         display:grid;
+    grid-template-columns:10% 10% 10% 70%;
+        }
+        .telugu-step{
+         display:grid;
+    grid-template-columns:10% 10% 10% 70%;
+        }
+     .other-step{
+         display:grid;
+    grid-template-columns:10% 10% 10% 70%;
+        }
+     
+     .third-stp{
+       display:grid;
+       grid-template-columns:25% 20% 20% 40%;
+         
+         }
+          .fourth-stp{
+       display:grid;
+       grid-template-columns:40% 40% 20% ;
+         
+         }
+          .fifth-stp{
+        display:grid;
+    grid-template-columns:33% 33% 33%;
+    }
+  .family-info-stp{
+       display:grid;
+   grid-template-columns:33% 33% 33%;
+    }
+  
+ .wrap{
+     width:1000px;
+     }
+     .left-row{
+         width:450px !important;
+         float:left !important;
+      
+         }
+           .right-row{
+         width:450px !important;
+         float:right !important;
+        
+         }
+         .add_field_button {
+    font-size: 18px;
+    background-color: #2368a0;
+    color: #fff;
+    border: 1px solid #2368a0;
+    padding: 4px 14px;
+    border-radius: 6px;
+    margin: 35px 25px;
+}
+ .btn-remove {
+    font-size: 18px;
+    background-color: #ef4048;
+    color: #fff;
+    border: 1px solid #ef4048;
+    padding: 4px 14px;
+    border-radius: 6px;
+    margin: 0px -15px;
+}
+             
+.navbar {
+    overflow: hidden;
+    background: #0d416b;
+    font-family: Arial, Helvetica, sans-serif;
+  border-bottom:2px solid #eeeeee;
+}
+   .foot{
+    height: 80px;
+    background-color: #232527;
+    width: 100%;
+    float: left;
+   color: #bdc3c7;}
+    .foot a{ color:#fff;text-decoration:none;}
+    .foot a:hover{text-decoratopn:underline;color:#ef4048;}
+   .log{padding-right: 30px;margin-top: 7px;
+margin-right: 30px;
+   }
+   .rhino-bullets li{
+       width: 400px!important;
+   }
+   </style>
+    </head>
+    <body>
+    <div class="navbar ">
+<div class="nav-left">
+<div class="log">
+<img src="img/miracle-logo-light.png" height="44px" width="auto" style="padding-left:10px; margin-top: 7px;">
+    </div>
+</div>
+  <div class="nav-right" style="margin-top:-64px;">
+<h1 style="color:#ffffff;"><center>Miracle Onboarding Details</center></h1>
+  
+  </div> 
+  
+</div>
+      <br><br>
+        <div id="page">
+            <div id="wrapper">
+               
+                <form action="">
+
+                    <div id="slider" style="height:1018px!important;z-index:0 !important;">
+                        <div class="form-step">
+                     
+                           <h2> Personal Details</h2>
+                              <div class="general-step">
+                            <div class="row">
+                                <div class="form-left">Full Name</div>
+                                <div class="form-right"><input type="text" id="fname" name="fname" class="form-input" /></div>
+                               
+                            </div>
+                            <div class="row">
+                                <div class="form-left">E-mail</div>
+                                <div class="form-right"><input type="text" id="lname" name="lname" class="form-input" /></div>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="form-left">Applied Position</div>
+                                <select id="pos1" name="position">
+                                        <option value="0">Select position</option>
+                                        <option value="1">Jr. Systems Engineer</option>
+                                        <option value="2">Project Management Executive</option>
+                                          <option value="2">Human Resources Executive</option>
+                                            <option value="2">Digital Marketing Executive</option>
+                                              <option value="2">US IT Recruiter</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <h2>General Information</h2>
+                           
+                           <div class="general-step">
+                            <div class="row">
+                                <div class="form-left">PAN/Acknowledge No*</div>
+                                <div class="form-right"><input type="text" id="fname" name="fname" class="form-input" /></div>
+                               
+                            </div>
+                            <div class="row">
+                                <div class="form-left">Aadhar No</div>
+                                <div class="form-right"><input type="text" id="lname" name="lname" class="form-input" /></div>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="form-left">Passport No</div>
+                                <div class="form-right"><input type="text" id="lname1" name="lnam11" class="form-input" /></div>
+                                
+                            </div>
+                            </div>
+                        <div class="row">
+                       
+                          <h2>Emergency Contact details</h2>
+                             <div class="third-stp">
+                              <div class="row">
+                              <div class="form-left">Emergency Contact 1</div>
+                                <div class="form-right"><input type="text" id="lname" name="lname" class="form-input" /></div>
+                                <div class="form-error"></div>
+                              </div>
+                             <div class="row">
+                                <div class="form-left">Emergency Contact 2</div>
+                                <div class="form-right"><input type="text" id="lname" name="lname" class="form-input" /></div>
+                                <div class="form-error"></div></div>  </div></div>
+                            
+                              <h2>Bank Details</h2>
+                                 <div class="row">
+                                      <div class="third-stp">
+                             <div class="row">
+                                <div class="form-left">Bank Details</div>
+                                <div class="form-right">
+                                    <select id="bank-details" name="bank details">
+                                        <option value="0">Select Category</option>
+                                        <option value="1">Yes</option>
+                                        <option value="2">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                          
+                            
+                                  <div class="row bank-details" style="display:none";>
+                                <div class="form-left">Bank Name </div>
+                                <div class="form-right"><input type="text" id="bname" name="bname" class="form-input" /></div>
+                                
+                            </div>
+                            <div class="row bank-details" style="display:none";>
+                                <div class="form-left"> Account Number </div>
+                                <div class="form-right"><input type="text" id="aname" name="aname" class="form-input" /></div>
+                          </div>
+                            </div>
+                        </div>
+                        
+                         <h2>Medical Information</h2>
+                                <div class="fifth-stp">
+                            
+                             <div class="row">
+                                <div class="form-left">Blood Group</div>
+                                <div class="form-right"> <select id="bloodgrp" name="bloodgrp">
+                                        <option value="0">Select</option>
+                                        <option value="1">O+</option>
+                                        <option value="2">O-</option>
+                                         <option value="3">A+</option>
+                                          <option value="4">A-</option>
+                                           <option value="5">B+</option>
+                                            <option value="6">B-</option>
+                                             <option value="7">AB+</option>
+                                              <option value="8">AB-</option>
+                                    </select></div>
+                            </div>
+                             <div class="row">
+                                <div class="form-left">Medical Certificate</div>
+                                <div class="form-right"><input type="file" id="mobile" name="mobile" class="form-input" /></div>
+                                <div class="form-error"></div>
+                            </div>
+                             <div class="row">
+                                <div class="form-left">Health Problems</div>
+                                <div class="form-right">
+                                    <select id="health-info" name="health-info">
+                                        <option value="0">Select</option>
+                                        <option value="1">Yes</option>
+                                        <option value="2">No</option>
+                                    </select>
+                                </div>
+                                <div class="form-error"></div>
+                            </div>
+                            </div>
+                                <div class="fifth-stp">
+                      <div class="row health-info" style="display:none;"> 
+                                <div class="form-left" >Specify it in detail</div>
+                                <div class="form-right"><textarea rows="5" cols="50" id="temp">
+                                </textarea>
+                                </div></div></div>
+                        </div>
+                        <div class="form-step" >
+                        
+                       <div class="row">
+                                <div class="form-left">Marital Status</div>
+                                <div class="form-right">
+                                    <select id="health-info" name="marital-info">
+                                        <option value="0">Select</option>
+                                        <option value="1">Yes</option>
+                                        <option value="2">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                        <div class="input_fields_wrap">
+                        <div class="row">
+                            <div class="family-info-stp">
+                                
+                               <div class="row">
+                                <div class="form-left">Name</div>
+                                <div class="form-right"><input type="text" id="fname" name="fname" class="form-input" /></div>
+                               
+                            </div>
+                             <div class="row">
+                                <div class="form-left">Gender</div>
+                                <div class="form-right">    <select id="gender-info" name="gender">
+                                        <option value="0">Select Category</option>
+                                        <option value="1">Male</option>
+                                        <option value="2" >Female</option>
+                                    </select></div>
+                               
+                            </div>
+                             <div class="row">
+                                <div class="form-left">Relationship</div>
+                                <div class="form-right"> <select id="relation-info" name="relation">
+                                        <option value="0">Select Category</option>
+                                        <option value="1">Father</option>
+                                        <option value="2" >Mother</option>
+                                         <option value="3" >Sister</option>
+                                          <option value="4" >Brother</option>
+                                    </select></div>
+                               
+                            </div>
+                                </div></div>
+                                   <div class="row">
+                            <div class="family-info-stp">
+                             <div class="row">
+                                <div class="form-left">DOB</div>
+                                <div class="form-right"><input type="date" id="fname" name="fname" class="form-input" style="padding: 5px 46px;" /></div>
+                               
+                            </div>
+                             <div class="row">
+                                <div class="form-left">Age </div>
+                                <div class="form-right"><input type="text" id="fname" name="fname" class="form-input" /></div>
+                               
+                            </div>
+                              <div class="row">
+                                <div class="form-left">Occupation</div>
+                                <div class="form-right"><input type="text" id="fname" name="fname" class="form-input" /></div>
+                                 <button type="button" class="add_field_button"><span class="fa fa-plus"></span></button>
+                            </div>
+                       
+                               </div>
+                                
+                            
+                        </div></div>
+                        
+                        
+                        
+                        
+                     <!--  <div class="input_fields_wrap">
+    <button class="add_field_button">Add More Fields</button>
+    <div><input type="text" name="mytext[]"></div>
+</div> -->
+                        </div>
+                      
+                         <div class="form-step">
+                        
+                            <div class="row">
+                            <h2>Language proficiency</h2>
+                             <div class="english-step">
+                             <div class="form-left">English:
+                              
+                                </div>
+<div>
+        <input id="item1" name="item1" type="checkbox">
+        <label id="item1" for="item1">Speak</label>
+    </div>    
+
+    <div>    
+        <input id="item2" name="item2" type="checkbox">
+        <label id="item2" for="item2">Read</label>
+    </div>    
+
+    <div>    
+        <input id="item3" name="item3" type="checkbox">
+        <label id="item3" for="item3">Write</label>
+    </div>    
+      
+   
+    </div>
+     <div class="hindi-step">
+                              <div class="form-left">Hindi :
+                              
+                                </div>
+      
+
+<div>
+        <input id="item1" name="item1" type="checkbox">
+        <label id="item1" for="item1">Speak</label>
+    </div>    
+
+    <div>    
+        <input id="item2" name="item2" type="checkbox">
+        <label id="item2" for="item2">Read</label>
+    </div>    
+
+    <div>    
+        <input id="item3" name="item3" type="checkbox">
+        <label id="item3" for="item3">Write</label>
+    </div>    
+      
+   
+    </div>
+    
+     <div class="telugu-step">
+                             <div class="form-left">Telugu :
+                              
+                                </div>
+      
+
+<div>
+        <input id="item1" name="item1" type="checkbox">
+        <label id="item1" for="item1">Speak</label>
+    </div>    
+
+    <div>    
+        <input id="item2" name="item2" type="checkbox">
+        <label id="item2" for="item2">Read</label>
+    </div>    
+
+    <div>    
+        <input id="item3" name="item3" type="checkbox">
+        <label id="item3" for="item3">Write</label>
+    </div>    
+      
+   
+    </div>
+     
+     <div class="row">
+                            <h2>Other Details(Serious Interest and Hobbies)</h2>
+                                 <div class="" style="display: grid;grid-template-columns: 25% 25%;"> 
+                                <div class="form-left" >Hobbies</div></div>
+                                <div class="form-right"><textarea rows="12" cols="75" id="temp">
+                                </textarea>
+                                </div>
+                            </div>
+     </div>
+      <div class="row">
+                             <h2>Internal References</h2>
+                                <div class="form-left">Do you have any references in miracle</div>
+                                <div class="form-right">
+                                    <select id="reference" name="reference">
+                                        <option value="0">Select category</option>
+                                        <option value="1">Yes</option>
+                                        <option value="2">No</option>
+                                    </select>
+                                </div>
+                                 </div>
+                                 <div class="row reference-step" style="display:none;">
+                                    <div class="third-stp">
+                                   <div class="row">
+                                <div class="form-left">Emp Name</div>
+                                 <div class="form-right"><input type="text" id="ename" name="ename" class="form-input" /></div>
+                                 </div>
+                                  <div class="row">
+                                <div class="form-left">Emp ID</div>
+                                 <div class="form-right"><input type="text" id="eid" name="eid" class="form-input" /></div>
+                                 </div>
+                                 </div>
+                            </div>
+                            </div>
+                           
+                         
+                        </div>
+                       
+                       
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+            <footer class="foot" >  
+                    <div class=""style="margin: 31px 68px;">
+                  <center>  © 2018 <a target="_blank" href="http://www.miraclesoft.com" title="Copyright" itemprop="url"> Miracle Software Systems, Inc.</a></center>
+                    </div>
+                      <div class="pull-right"></div>
+                </footer>
+        <script>
+        $(document).ready(function(){
+    $(".btn-click").click(function(){
+    
+        $(".right-row").fadeIn(1000);
+    });
+});
+        </script>
+    </body>
+</html>
