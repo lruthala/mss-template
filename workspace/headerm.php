@@ -123,7 +123,7 @@ ul li a{
 					<!-- Logo
 					============================================= -->
 					<div id="logo">
-						<a href="index.html" class="standard-logo" data-dark-logo="../version-3.0/images/miracle-logo.svg" width="150px" height="70px"><img src="../version-3.0/images/miracle-logo.svg" width="150px" height="70px"alt="Miracle Logo" style="margin-left:15px; margin-top: -2px;"></a>
+						<a href="index.html" class="standard-logo" data-dark-logo="images/miracle-logo.svg" width="150px" height="70px"><img src="../images/miracle-logo.svg" width="150px" height="70px"alt="Miracle Logo" style="margin-left:15px; margin-top: -2px;"></a>
 						<!--	<a href="index.html" class="standard-logo" data-dark-logo="../NewFolder/miracle-logo.svg"  width="150px" height="70px"><img src="../NewFolder/miracle-logo.svg" width="150px" height="70px" alt="Miracle Logo" style="margin-left:15px;"></a>-->
 					</div><!-- #logo end -->
 
